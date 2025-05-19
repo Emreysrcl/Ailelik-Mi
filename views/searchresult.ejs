@@ -1,0 +1,147 @@
+
+<%- include('partials/header') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>İçerik Arama Sonucu</title>
+  
+  <link rel="stylesheet" href="/styles/searchresult.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+   
+
+  <div class="container py-5">
+    <div class="row align-items-center rounded-4 shadow-lg p-5 bg-light-custom">
+      <div class="col-lg-6 mb-4 mb-lg-0">
+        <h1 class="display-5 fw-bold text-primary-custom text-center mb-4">
+          <%= searchTerm %>
+        </h1>
+
+        <!-- İzlenebilirlik Kartı -->
+        <div class="card p-3 mb-3">
+          <h5 class="text-primary-custom mb-2">İzlenebilirlik</h5>
+          <p><i class="bi bi-people"></i> <strong>Aile ile izlenir mi:</strong> <%= result.isFamilyFriendly %></p>
+          <p><i class="bi bi-star-fill"></i> <strong>Puan:</strong> <%= result.familyFriendlyRating %>/10</p>
+        </div>
+
+        <!-- İçerik Bilgisi Kartı -->
+        <div class="card p-3 mb-3">
+          <h5 class="text-primary-custom mb-2">İçerik Bilgisi</h5>
+          <p><i class="bi bi-film"></i> <strong>Tür:</strong> <%= result.contentType %></p>
+          <p><i class="bi bi-tags"></i> <strong>Tarz:</strong> <%= result.genre %></p>
+          <p><i class="bi bi-tv"></i> <strong>Platform:</strong> <%= result.platform %></p>
+          <p><i class="bi bi-clock"></i> <strong>Süre:</strong> <%= result.duration %></p>
+        </div>
+
+        <!-- Oyuncular & Yönetmen -->
+        <div class="card p-3 mb-3">
+          <h5 class="text-primary-custom mb-2">Kadro</h5>
+          <p><i class="bi bi-person-video"></i> <strong>Oyuncular:</strong> <%= result.mainActors %></p>
+          <p><i class="bi bi-person-workspace"></i> <strong>Yönetmen:</strong> <%= result.director %></p>
+        </div>
+
+        <!-- Özet ve Yorum -->
+        <div class="card p-3 mb-3">
+          <h5 class="text-primary-custom mb-2">Özet & Yorum</h5>
+          <p><strong>Özet:</strong> <%= result.summary %></p>
+          <p><strong>Yorumumuz:</strong> <%= result.languageSpecificRecommendations %></p>
+        </div>
+
+        <!-- Fragman ve Yeni Arama Butonları -->
+        <div class=" flex-wrap gap-2">
+            <a href="<%= result.videoLink %>" class="btn btn-main rounded-pill px-4">Fragman</a>
+
+          <form action="/home" method="GET" class="d-inline-block">
+            <button type="submit" class="btn btn-main rounded-pill px-4">Yeni Arama</button>
+          </form>
+
+            <form action="/save" method="POST" class="d-inline-block">
+              <input type="hidden" name="searchTerm" value="<%= searchTerm %>">
+              <input type="hidden" name="searchTermImage" value="<%= searchTermImage %>">
+              <input type="hidden" name="isFamilyFriendly" value="<%= result.isFamilyFriendly %>">
+              <input type="hidden" name="familyFriendlyRating" value="<%= result.familyFriendlyRating %>">
+              <input type="hidden" name="contentType" value="<%= result.contentType %>">
+              <input type="hidden" name="genre" value="<%= result.genre %>">
+              <input type="hidden" name="platform" value="<%= result.platform %>">
+              <input type="hidden" name="duration" value="<%= result.duration %>">
+              <input type="hidden" name="mainActors" value="<%= result.mainActors %>">
+              <input type="hidden" name="director" value="<%= result.director %>">
+              <input type="hidden" name="summary" value="<%= result.summary %>">
+              <input type="hidden" name="languageSpecificRecommendations" value="<%= result.languageSpecificRecommendations %>">
+              <input type="hidden" name="videoLink" value="<%= result.videoLink %>">
+              <input type="hidden" name="userId" value="<%= user._id %>">
+              <input type="hidden" name="userName" value="<%= searchTermImage %>">
+              <button type="submit" class="btn btn-main rounded-pill px-4">İçerik Kütüphanesine Ekle</button>
+            </form>
+          </div>
+      </div>
+
+      <!-- Sağdaki Görsel -->
+      <div class="col-lg-6 text-center mt-4 mt-lg-0">
+        <img src="<%= searchTermImage %>" class="img-fluid rounded-4 shadow" alt="aile img" width="500" height="400" loading="lazy">
+      </div>
+
+      
+       <!-- Yorum Formu -->
+       <form action="/comment" method="POST" class="mt-4">
+        <div class="input-group">
+          <input type="text" name="yorum" class="form-control px-4 comment-input" 
+                 placeholder="İçerik için yorumunuzu yazın..." required>
+          <input type="hidden" name="searchTerm" value="<%= searchTerm %>">
+          <input type="hidden" name="userId" value="<%= user.id %>">
+          <input type="hidden" name="userName" value="<%= user.name %>">
+          <input type="hidden" name="userSurname" value="<%= user.surname %>">
+          <input type="hidden" name="userImage" value="<%= user.profilimg %>">
+          <button type="submit" class="btn btn-secondary comment-button">
+            Yorum Yap
+          </button>
+          <button type="button" class="btn btn-cancel comment-button" onclick="this.closest('form').reset();">
+            İptal
+          </button>
+        </div>
+      </form>
+      
+      <!-- Yorumlar -->
+
+    <% if (comment.length === 0) { %>
+        <div class="comments-section mt-4">
+          <h5 class="text-primary-custom mb-3">Yorumlar</h5>
+          <p class="text-muted">Henüz yorum yapılmamış.</p>
+        </div>
+      
+      <% } else { %>
+      <div class="comments-section mt-4">
+        <h5 class="text-primary-custom mb-3">Yorumlar</h5>
+        <% comment.forEach(comments => { %>
+          <div class="youtube-comment d-flex mb-3">
+            <div class="comment-avatar">
+              <img src="profil/<%= comments.user_image %>" alt="profil" />
+            </div>
+            <div class="comment-content ms-3">
+              <div class="comment-user fw-semibold"><%= comments.username %></div>
+              <div class="comment-text text-muted" style="max-width: 100%; word-wrap: break-word; white-space: normal;">
+                <%= comments.comment %>
+              </div>
+      
+             
+              <div class="comment-time text-muted mt-2">
+                <small><%= formatDate(comments.created_at) %></small>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+      <% } %>
+      
+
+  
+    </div>
+  </div>
+
+ 
+</body>
+</html>
+<%- include('partials/footer') %>

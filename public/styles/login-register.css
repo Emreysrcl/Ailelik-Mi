@@ -1,0 +1,83 @@
+:root {
+   
+    --accent-light: #9ACBD0;
+    --accent: #48A6A7;
+    --dark: #006A71;
+    --text-dark: #2C2C2C;
+  }
+
+  body {
+    background: #ede7d5;
+    font-family: 'Segoe UI', sans-serif;
+    color: var(--text-dark);
+    margin: 0;
+    padding: 0;
+  }
+
+  .custom-tab {
+    background-color: var(--accent-light);
+    color: white !important;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin: 0 5px;
+    border: none;
+    transition: all 0.3s;
+  }
+
+  .custom-tab:hover,
+  .custom-tab.active {
+    background-color: var(--accent) !important;
+    color: white !important;
+  }
+
+  form {
+    display: none;
+    background-color: rgb(245, 245, 245);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .active-form {
+    display: block;
+  }
+
+  input, button {
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+
+  button[type="submit"] {
+    background-color: var(--dark);
+    color: white;
+    font-weight: bold;
+    border: none;
+    transition: background-color 0.3s;
+  }
+
+  button[type="submit"]:hover {
+    background-color: var(--accent);
+  }
+
+  .file-upload-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+  }
+
+  @media (max-width: 500px) {
+    .custom-tab {
+      padding: 8px 14px;
+      font-size: 0.9rem;
+    }}
+
+    form {
+      padding: 20px;
+    }
+  

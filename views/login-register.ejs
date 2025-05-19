@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    
+    <link rel="manifest" href="/assets/site.webmanifest">
+    <link rel="stylesheet" href="/styles/login-register.css">
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+    <div class="container d-flex flex-column align-items-center justify-content-center min-vh-100">
+        <ul class="nav nav-pills justify-content-center mb-4">
+            <li class="nav-item">
+              <button class="nav-link active custom-tab" id="show-login">Giriş Yap</button>
+            </li>
+            <li class="nav-item">
+              <button class="nav-link custom-tab" id="show-register">Kayıt Ol</button>
+            </li>
+          </ul>
+    
+      <% if (typeof message !== 'undefined' && message) { %>
+    <div class="alert alert-<%= message.type %> text-center mt-3">
+      <%= message.content %>
+    </div>
+  <% } %>
+  
+    
+      <!-- Giriş Formu -->
+      <form id="login-form" action="/login" method="POST" class="active-form">
+        <input type="text" name="username" placeholder="E-posta" required />
+        <input type="password" name="password" placeholder="Şifre" required />
+        <button type="submit">Giriş Yap</button>
+      </form>
+    
+      <!-- Kayıt Formu -->
+      <form id="register-form" action="/register" method="POST" enctype="multipart/form-data">
+        <input type="text" name="username" placeholder="E-posta" required />
+        <input type="password" name="password" placeholder="Şifre" required />
+        <input type="text" name="name" placeholder="Ad" required />
+        <input type="text" name="surname" placeholder="Soyad" required />
+        <input type="number" name="age" placeholder="Yaş" required />
+        <input type="tel" name="tel" placeholder="Telefon Numarası" required />
+        <input type="text" name="country" placeholder="Ülke" required />
+        <label class="file-upload-label" for="profilimg">Profil Fotoğrafı</label>
+        <input type="file" id="profilimg" name="profilimg" accept="image/*" />
+        <button type="submit">Kayıt Ol</button>
+      </form>
+    </div>
+      <script>
+        const tabs = document.querySelectorAll('.custom-tab');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+    
+        tabs.forEach(tab => {
+          tab.addEventListener('click', function() {
+            tabs.forEach(el => el.classList.remove('active'));
+            this.classList.add('active');
+    
+            if (this.id === 'show-login') {
+              loginForm.classList.add('active-form');
+              registerForm.classList.remove('active-form');
+            } else {
+              registerForm.classList.add('active-form');
+              loginForm.classList.remove('active-form');
+            }
+          });
+        });
+      </script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

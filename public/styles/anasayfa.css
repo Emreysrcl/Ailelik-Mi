@@ -1,0 +1,157 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #ede7d5;
+  font-family: 'Segoe UI', sans-serif;
+  color: #2C2C2C;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+.bg-light-custom {
+  background-color: rgba(255, 255, 255, 0.95); /* biraz daha net */
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 1200px; /* büyük ekranlarda genişliği sınırla */
+  margin: 0 auto;
+}
+
+.text-primary-custom {
+  color: #006A71;
+}
+
+.text-dark-custom {
+  color: #2C2C2C;
+}
+
+.btn-main {
+  background-color: #48A6A7;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1.1rem;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-main:hover {
+  background-color: #006A71;
+  color: #F2EFE7;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+input.form-control:focus {
+  border-color: #48A6A7;
+  box-shadow: 0 0 0 0.2rem rgba(72, 166, 167, 0.25);
+  outline: none;
+}
+
+/* Mobil (≤768px) */
+@media (max-width: 768px) {
+  .container {
+    padding: 2rem 1rem;
+  }
+
+  .row {
+    flex-direction: column !important;
+    padding: 1.5rem 1rem !important;
+    text-align: center;
+  }
+
+  .display-5 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  .lead {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .input-group {
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .input-group input {
+    width: 100%;
+    border-radius: 10px !important;
+    padding: 0.75rem;
+    font-size: 1rem;
+    box-sizing: border-box;
+    min-width: 0;
+  }
+
+  .input-group .btn {
+    width: 100%;
+    border-radius: 10px !important;
+    padding: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+  }
+
+  .input-group img {
+    margin-right: 8px;
+  }
+
+  .img-fluid {
+    width: 100% !important;
+    height: auto;
+    margin-top: 2rem !important;
+  }
+}
+
+/* Tablet (768px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .display-5 {
+    font-size: 2.4rem;
+  }
+
+  .lead {
+    font-size: 1.1rem;
+  }
+
+  .img-fluid {
+    max-width: 90%;
+    height: auto;
+  }
+}
+
+/* Masaüstü (≥1025px) */
+@media (min-width: 1025px) {
+  .display-5 {
+    font-size: 3rem;
+  }
+
+  .lead {
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 768px) {
+  .input-group input {
+    border-radius: 10px !important;
+  }
+
+  .input-group .btn {
+    border-radius: 10px !important;
+  }
+
+  /* Bootstrap’ın .rounded-start-pill ve .rounded-end-pill sınıflarını override ediyoruz */
+  .rounded-start-pill,
+  .rounded-end-pill {
+    border-radius: 10px !important;
+  }
+}

@@ -1,0 +1,180 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #ede7d5;
+    color: #2C2C2C;
+}
+
+.landing-wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, #eeeadf 0%, #e2d8bf 100%);
+}
+
+.main-title {
+    animation: fadeInDown 1s ease-out;
+}
+.btn-main {
+    animation: fadeInUp 1.3s ease-out;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.text-box {
+    background-color: rgb(245, 245, 245);
+    padding: 4rem;
+    border-radius: 30px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    max-width: 700px;
+}
+
+.main-title {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #006A71;
+    margin-bottom: 1.5rem;
+}
+
+.tagline {
+    font-size: 1.5rem;
+    margin-bottom: 2.5rem;
+    color: #2C2C2C;
+}
+
+.btn-main {
+    background-color: #006A71;
+    color: #fff;
+    padding: 1rem 2.5rem;
+    font-size: 1.25rem;
+    border: none;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-main:hover {
+    background-color: #48A6A7;
+    color: #fff;
+    
+}
+
+.comment-input-group {
+    border-radius: 9999px;
+    overflow: hidden;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+  }
+  
+  .comment-input {
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    border-radius: 0;
+    background-color: #fff;
+  }
+  
+  .comment-btn {
+    background-color: #48A6A7; /* Ana buton rengi */
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0;
+    transition: background-color 0.3s ease;
+  }
+  
+  .comment-btn:hover {
+    background-color: #006A71; /* Hover efekti uyumu */
+    color: #F2EFE7;
+  }
+  
+  
+/* Mobil (≤768px) */
+@media (max-width: 768px) {
+  .landing-wrapper {
+    padding: 1rem;
+  }
+
+  .text-box {
+    padding: 2rem;
+    border-radius: 20px;
+  }
+
+  .main-title {
+    font-size: 2.5rem;
+  }
+
+  .tagline {
+    font-size: 1.2rem;
+  }
+
+  .btn-main {
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+/* Tablet (768px–1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .text-box {
+    padding: 3rem;
+    border-radius: 25px;
+  }
+
+  .main-title {
+    font-size: 3rem;
+  }
+
+  .tagline {
+    font-size: 1.3rem;
+  }
+
+  .btn-main {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+  }
+}
+
+/* Masaüstü (≥1025px) */
+@media (min-width: 1025px) {
+  .text-box {
+    max-width: 700px;
+  }
+
+  .main-title {
+    font-size: 4rem;
+  }
+
+  .tagline {
+    font-size: 1.5rem;
+  }
+
+  .btn-main {
+    font-size: 1.25rem;
+  }
+}
+
+

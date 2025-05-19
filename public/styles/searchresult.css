@@ -1,0 +1,255 @@
+/* searchresult.css */
+
+body {
+  background: #ede7d5;
+    font-family: 'Segoe UI', sans-serif;
+    color: #2c2c2c;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 1140px;
+    margin: auto;
+  }
+  
+  .bg-light-custom {
+    background-color: #ffffff;
+   
+  }
+  
+  .text-primary-custom {
+    color: #006a71;
+  }
+  
+  .text-dark-custom {
+    color: #374151;
+  }
+  
+  .card-custom {
+    border: 1px solid #dedede;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  }
+  
+  .card-custom h4 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: #308789;
+    font-weight: bold;
+  }
+  
+  .card-custom p {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  strong {
+    color: #308789;
+    font-weight: 600;
+  }
+  
+  .btn-main {
+    background-color: #48a6a7;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 1rem;
+  }
+  
+  .btn-main:hover {
+    background-color: #006a71;
+    color: #f2efe7;
+    box-shadow: 0 4px 14px #006a71;
+  }
+  
+  .container img {
+    border-radius: 1rem;
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+  
+  .icon {
+    margin-right: 0.5rem;
+    color: #48a6a7;
+    vertical-align: middle;
+  }
+  
+  .btn-secondary {
+    background-color: #48a6a7;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+    border-radius: 9999px;
+    padding: 0.6rem 1.5rem;
+    
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    
+  } 
+  .btn-secondary:hover {
+    background-color: #006a71;
+    color: #f2efe7;
+    box-shadow: 0 4px 14px #006a71;
+  }
+  .input-group {
+    display: flex;
+    align-items: stretch; /* Butonlar ve input aynı yükseklikte olsun */
+  }
+  
+  .comment-input {
+    border-top-left-radius: 9999px;
+    border-bottom-left-radius: 9999px;
+    border-right: none; /* Sağda sınır çizgisi olmasın */
+  }
+  
+  .comment-button {
+    border-top-right-radius: 9999px;
+    border-bottom-right-radius: 9999px;
+    background-color: #48A6A7;
+    color: #fff;
+    font-weight: 500;
+    border: none;
+    padding: 0 20px;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+  }
+  
+  .comment-button:hover {
+    background-color: #006A71;
+  }
+  
+  /* İptal butonunu ayrı renklendiriyoruz */
+  .btn-cancel {
+    background-color: #ccc;
+    color: #333;
+  }
+  
+  .btn-cancel:hover {
+    background-color: #aaa;
+    color: #fff;
+  }
+  
+  /* Input ve buton arasında boşluk olmasın */
+  .input-group > .comment-input, 
+  .input-group > .comment-button {
+    height: 48px; /* Sabit yükseklik */
+  }
+  
+
+
+  .youtube-comment {
+    align-items: flex-start;
+  }
+  
+  .comment-avatar img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .comment-content {
+    background-color: #e3f0f0;
+    border-radius: 12px;
+    padding: 15px;
+    max-width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .comment-user {
+    font-size: 20px;
+    color:#308789;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .comment-text {
+    font-size: 18px;
+    line-height: 1.5;
+    color: #232222;
+  }
+  
+  .comment-time {
+    font-size: 12px;
+    color: #888;
+  }
+
+
+  @media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .row {
+    flex-direction: column;
+    padding: 1rem !important;
+  }
+
+  .display-5 {
+    font-size: 1.75rem;
+    text-align: center;
+  }
+
+  .card {
+    margin-bottom: 1.5rem;
+  }
+
+  .btn {
+    width: 100%;
+    margin-bottom: 0.75rem;
+  }
+
+  .btn-main {
+    padding: 0.75rem !important;
+    font-size: 1rem;
+  }
+
+  .img-fluid {
+    width: 100% !important;
+    height: auto;
+    margin-top: 1rem;
+  }
+
+  .input-group {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .input-group .form-control,
+  .input-group .btn {
+    width: 100%;
+    border-radius: 10px !important;
+    padding: 0.75rem;
+  }
+
+  .comment-avatar img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .comment-content {
+    margin-left: 0.75rem;
+  }
+
+  .youtube-comment {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+

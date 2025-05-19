@@ -1,0 +1,407 @@
+
+body{
+    background: #ede7d5;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+   
+}
+
+.container {
+    flex: 1; /* İçeriğin esnek olarak genişlemesini sağlar */
+}
+
+footer {
+    width: 100%;
+    height: 7%;
+    background-color: #333; /* Arka plan rengi */
+    color: black; /* Yazı rengi */
+    margin-top: 250px;
+    text-align: center;
+    padding: 0;
+    position:fixed;
+    bottom: 0;
+    left: 0;
+}
+
+.profile-container {
+    display: flex;
+    align-items: flex-start; /* Yazıları üst hizalamak için */
+    gap: 10%; /* Fotoğraf ve yazılar arasındaki boşluk */
+    margin-top: 50px;
+    background-color: white; /* Arka plan rengi */
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti */
+}
+
+.profile-image {
+    width: 25%;
+    height: auto; /* Oranını korumak için */
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-details {
+    flex-grow: 1;
+}
+
+.profile-details p {
+    margin: 10px 0; /* Daha fazla dikey boşluk */
+    margin-top: 25px;
+    font-size: 1.3rem;
+    color: #333; /* Yazı rengi */
+}
+
+.profile-details strong {
+    color: #006a71; /* Öne çıkan yazı rengi */
+}
+
+.edit-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #48a6a7;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 1rem;
+
+}
+
+
+.edit-button:hover {
+    background-color: #006a71;
+    color: #f2efe7;
+    box-shadow: 0 4px 14px #006a71;
+}
+
+/* Düzenleme formu stilleri */
+#editForm {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+#editForm label {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #555; /* Label rengi */
+}
+
+#editForm .form-control {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+#editForm .form-control:focus {
+    outline: none;
+    border-color: #F48B57;
+    box-shadow: 0 0 4px rgba(244, 139, 87, 0.5); /* Odak efekti */
+}
+
+#editForm button {
+    margin-right: 10px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Kartların tam boyutta olmasını sağlar */
+}
+
+
+
+.card-text {
+    flex-grow: 1; /* Kart içindeki yazıları esnetir */
+}
+
+.container {
+    padding-top: 20px;
+  }
+  
+  .card {
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+  }
+  
+  .card-img-top {
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover .card-img-top {
+    transform: scale(1.05);
+  }
+  
+  .card-body {
+    background: #ffffff;
+    padding: 20px;
+  }
+  
+  .card-title {
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #006a71;
+  }
+  
+  .card-text {
+    display: flex;
+    justify-content: center;
+    font-size: 1rem;
+    color: black;
+    margin-bottom: 10px;
+  }
+  
+
+  /* Sekme butonları */
+.nav-tabs {
+    border-bottom: 2px solid #48A6A7;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+  
+  .nav-tabs .nav-link {
+    color: #48A6A7;
+    border: 1px solid transparent;
+    font-weight: bold;
+    padding: 0.75rem 1.5rem;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .nav-tabs .nav-link:hover {
+    background-color: #e8f9f9;
+    border-color: #48A6A7;
+    color: #1a6e6f;
+  }
+  
+  .nav-tabs .nav-link.active {
+    background-color: #48A6A7;
+    color: white;
+    border-radius: 8px 8px 0 0;
+    border: 1px solid #48A6A7;
+  }
+  
+  /* Sekme içerikleri */
+  .tab-content {
+   
+    border-radius: 0 0 8px 8px;
+    padding: 2rem;
+    
+  }
+  
+  /* Yorum kartları */
+  .comment-card {
+    border: 1px solid #dcdcdc;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .comment-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .comment-card img {
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .comment-card .card-body {
+    padding: 1rem;
+  }
+  
+  .comment-card .card-title {
+    color: #48A6A7;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+  .comment-card .card-text {
+    color: #333;
+    font-size: 1.2rem;
+  }
+  
+  .edit-buttons
+  {
+    width: 100%;
+   
+    
+    background-color: #48a6a7;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+    border: none;
+    
+    border-radius: 9px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    }
+
+  .edit-buttons:hover {
+    background-color: #006a71;
+    color: #f2efe7;
+    box-shadow: 0 4px 14px #006a71;
+  }
+
+@media (max-width: 768px) {
+  .profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profile-image {
+    max-width: 150px;
+    margin-bottom: 1rem;
+  }
+
+  .profile-details p {
+    font-size: 1rem;
+  }
+
+  .edit-button {
+    width: 100%;
+    padding: 0.75rem;
+  }
+
+  .form-control {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    padding: 0.75rem;
+  }
+
+  .tab-content {
+    margin-top: 20px;
+  }
+
+  .card {
+    margin-bottom: 1rem;
+  }
+
+  .comment-card {
+    margin-bottom: 1rem;
+  }
+
+  .img-fluid {
+    width: 100%;
+    height: auto;
+  }
+
+  .modal-body {
+    font-size: 1rem;
+  }
+
+  .modal-footer button {
+    width: 100%;
+  }
+}
+/* Yorumlar için düzenlemeler */
+@media (max-width: 768px) {
+  .comment-card {
+    margin-bottom: 1rem;
+    border: none;
+    padding: 1rem;
+  }
+
+  .comment-card .row {
+    flex-direction: column;
+  }
+
+  .comment-card .col-md-4 {
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+
+  .comment-card .col-md-8 {
+    width: 100%;
+  }
+
+  .comment-card img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .comment-card .card-body {
+    padding: 1rem;
+  }
+
+  .comment-card .card-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .comment-card .card-text {
+    font-size: 1rem;
+  }
+
+  .comment-card button {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Modal için */
+  .modal-dialog {
+    max-width: 100%;
+    margin: 1rem;
+  }
+
+  .modal-footer {
+    display: block;
+    text-align: center;
+  }
+}
+
+/* Daha geniş ekranlar için sabit genişlik */
+@media (min-width: 769px) {
+  .comment-card {
+    margin-bottom: 1.5rem;
+  }
+
+  .comment-card img {
+    max-width: 150px;
+    margin-right: 1rem;
+  }
+
+  .comment-card .card-body {
+    padding: 1.5rem;
+  }
+}

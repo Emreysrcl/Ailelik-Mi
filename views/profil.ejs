@@ -1,0 +1,328 @@
+<%- include('partials/header') %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="/styles/profil.css">
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+  <% if (typeof message !== 'undefined' && message) { %>
+    <div class="alert alert-<%= message.type %> text-center mt-3">
+      <%= message.content %>
+    </div>
+<% } %>
+
+<div class="container">
+        <div class="profile-container">
+            <img src="/profil/<%= profilimg %>" alt="Profile Image" class="profile-image">
+            <div class="profile-details">
+                <p><strong>Ad:</strong> <%= name %></p>
+                <p><strong>Soyad:</strong> <%= surname %></p>
+                <p><strong>Email:</strong> <%= username %></p>
+                <p><strong>Yaş:</strong> <%= age %></p>
+                <p><strong>Ülke:</strong> <%= country %></p>
+                <p><strong>Telefon Numarası:</strong> <%= tel %></p>
+                <button class="btn edit-button" id="editButton">
+                    <i class="bi bi-pencil-square"></i> Bilgilerini Düzenle
+                </button>
+            </div>
+        </div>
+        <form id="editForm" action="/updateprofil" class="d-none" method="post" enctype="multipart/form-data">
+
+            
+            <div class="mb-3">
+              <label for="name" class="form-label">Ad:</label>
+              <input type="text" class="form-control" id="name" name="name" value="<%= name %>" >
+            </div>
+            <div class="mb-3">
+              <label for="surname" class="form-label">Soyad:</label>
+              <input type="text" class="form-control" id="surname" name="surname" value="<%= surname %>" >
+            </div>
+            <div class="mb-3">
+              <label for="username" class="form-label">Email:</label>
+              <input type="email" class="form-control" id="username" name="username" value="<%= username %>" >
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Şifre:</label>
+              <input type="password" class="form-control" id="password" name="password" >
+            </div>
+            <div class="mb-3">
+              <label for="age" class="form-label">Yaş:</label>
+              <input type="number" class="form-control" id="age" name="age" value="<%= age %>" >
+            </div>
+            <div class="mb-3">
+              <label for="country" class="form-label">Ülke:</label>
+              <input type="text" class="form-control" id="country" name="country" value="<%= country %>" >
+            </div>
+            <div class="mb-3">
+              <label for="tel" class="form-label">Telefon Numarası:</label>
+              <input type="text" class="form-control" id="tel" name="tel" value="<%= tel %>" >
+            </div>
+            <div class="mb-3">
+              <label for="profilimg" class="form-label">Profil Fotoğrafı:</label>
+              <input type="file" class="form-control" id="profilimg" name="profilimg" accept="image/*">
+            </div>
+            <button type="submit" class="btn edit-button">Kaydet</button>
+            <button type="button" class="btn edit-button" id="cancelButton">İptal</button>
+          </form>
+  
+
+</div>
+
+
+
+ 
+  
+
+
+<ul class="nav nav-tabs mt-5" id="profileTabs" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="library-tab" data-bs-toggle="tab" data-bs-target="#library" type="button" role="tab">İçerik Kütüphanem</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="comments-tab" data-bs-toggle="tab" data-bs-target="#comments" type="button" role="tab">Yorumlarım</button>
+  </li>
+</ul>
+
+<div class="tab-content" id="profileTabsContent">
+  <!-- İçerik Kütüphanem Sekmesi -->
+  <div class="tab-pane fade show active" id="library" role="tabpanel" aria-labelledby="library-tab">
+    <% if (!savedFilms || savedFilms.length === 0) { %>
+      <div class="alert alert-warning text-center mt-4" role="alert" style="font-size: 1.2rem;">
+        <i class="bi bi-info-circle-fill" style="font-size: 1.5rem; margin-right: 10px;"></i>
+        Henüz kaydedilmiş bir içeriğiniz yok. İçerik eklemeye başlayabilirsiniz!
+      </div>
+    <% } else { %>
+      <div class="container mt-4 mb-5">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <% savedFilms.forEach(films => { %>
+            <div class="col">
+              <div class="card h-100">
+                <img src="<%= films.searchtermimage %>" class="card-img-top" alt="Film İsmi">
+                <div class="card-body">
+                  <h5 class="card-title"><%= films.name %></h5>
+                  <p class="card-text">Aile ile izlenir mi?: <strong><%= films.isfamilyfriendly %></strong></p>
+                  <p class="card-text">Puan: <strong><%= films.familyfriendlyrating %></strong></p>
+                  <a style="display:flex; justify-content:center" href="<%= films.videolink %>" target="_blank" class="btn btn-primary mb-2">Fragmanı İzle</a>
+                  <form class="d-inline">
+                    <button type="button" class="btn btn-danger w-100"
+                            data-bs-toggle="modal"
+                            data-bs-target="#deleteModal"
+                            data-film-id="<%= films.id %>">
+                      İçeriği Kütüphaneden Kaldır
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+    <% } %>
+  </div>
+
+  <!-- Yorumlarım Sekmesi -->
+  <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">
+    <div class="container mt-5">
+      <div class="row">
+        <% if (comment && comment.length > 0) { %>
+          <% comment.forEach(comments => { %>
+            <div class="col-md-6 mb-4">
+              <div class="card comment-card shadow-sm">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src="<%= film_image %>" class="img-fluid rounded-start" alt="<%= comments.filmname %>">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title"><%= comments.filmname %></h5>
+                      <p class="card-text"> <%= comments.comment %></p>
+                      <p class="card-text"><small class="text-muted"><%= formatDate(comments.created_at) %></small></p>
+
+                      
+                      <!-- Yorumu Düzenle Butonu -->
+                      <button  class="btn edit-buttons mb-2 edit-comment-btn mt-5"   data-comment-id="<%= comments.id %>">Yorumu Düzenle</button>
+
+                      <!-- Düzenleme Formu -->
+                      <form id="editPostForm-<%= comments.id %>" class="d-none mt-3" action="/updatecomment" method="POST">
+                        <input type="hidden" name="commentId" value="<%= comments.id %>">
+                        <div class="mb-3">
+                          <label for="comment-<%= comments.id %>"  class="form-label">Yorumunuzu Düzenleyin:</label>
+                          <textarea class="form-control" id="comment-<%= comments.id %>" name="comment" rows="3"><%= comments.comment %></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success">Kaydet</button>
+                        <button type="button" class="btn btn-secondary cancel-edit-btn" data-comment-id="<%= comments.id %>">İptal</button>
+                      </form>
+
+
+                  <!-- Yorumu Sil Butonu (Modal'ı tetikler) -->
+                    <button type="button"
+                    class="btn btn-danger w-100 "
+                    data-bs-toggle="modal"
+                    data-bs-target="#deleteCommentModal"
+                    data-comment-id="<%= comments.id %>">
+                    Yorumu Sil
+                    </button>
+                  
+
+                    
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% }) %>
+        <% } else { %>
+          <div class="alert alert-info mt-3">Henüz yorum yapmadınız.</div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </div>
+  
+
+<!-- İçerik Kütüphanesi Silme Modalı -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="deleteFilmModalLabel" style="color:black;">İçeriği Kütüphaneden Kaldır</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+          </div>
+          <div class="modal-body" style="color:black;">
+              Bu içeriği kütüphaneden kaldırmak istediğinize emin misiniz?
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hayır</button>
+              <form id="deleteForm" action="/deletefilm" method="POST">
+                  <input type="hidden" name="filmId" id="filmIdInput">
+                  <button type="submit" class="btn btn-danger">Evet</button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+  
+
+
+<!-- Yorumu Sil Modalı -->
+<!-- Sadece form içindeki input bırakıldı -->
+<div class="modal fade" id="deleteCommentModal" tabindex="-1" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="deleteCommentModalLabel" style="color:black;">Yorumu Sil</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+          </div>
+          <div class="modal-body" style="color:black;">
+              Bu yorumu silmek istediğinize emin misiniz?
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hayır</button>
+              <form id="deleteForm" action="/deletecomment" method="POST">
+                <input type="hidden" name="commentId" id="modalCommentInput">
+                <button type="submit" class="btn btn-danger">Evet, Sil</button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+    const editButton = document.getElementById('editButton');
+    const editForm = document.getElementById('editForm');
+    const cancelButton = document.getElementById('cancelButton');
+
+    editButton.addEventListener('click', () => {
+        editForm.classList.remove('d-none');
+        editButton.classList.add('d-none'); 
+    });
+
+    cancelButton.addEventListener('click', () => {
+        editForm.classList.add('d-none');
+        editButton.classList.remove('d-none'); 
+    });
+    const editPostButtons = document.querySelectorAll('#editPostButton');
+    const editPostForms = document.querySelectorAll('#editPostForm');
+    const cancelPostButtons = document.querySelectorAll('#cancelPostButton');
+    
+    editPostButtons.forEach((editPostButton, index) => {
+        editPostButton.addEventListener('click', () => {
+            
+            editPostForms[index].classList.remove('d-none');
+            
+            editPostButton.classList.add('d-none');
+        });
+    });
+    
+    cancelPostButtons.forEach((cancelPostButton, index) => {
+        cancelPostButton.addEventListener('click', () => {
+            
+            editPostForms[index].classList.add('d-none');
+           
+            editPostButtons[index].classList.remove('d-none');
+        });
+    });
+
+    const deleteModal = document.getElementById('deleteModal');
+    deleteModal.addEventListener('show.bs.modal', function (event) {
+      const button = event.relatedTarget;
+      const filmId = button.getAttribute('data-film-id');
+      const input = deleteModal.querySelector('#filmIdInput');
+      input.value = filmId;
+    });
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const editButtons = document.querySelectorAll('.edit-comment-btn');
+    
+      editButtons.forEach(button => {
+        button.addEventListener('click', function () {
+          const commentId = this.getAttribute('data-comment-id');
+          const form = document.getElementById(`editPostForm-${commentId}`);
+          if (form) {
+            form.classList.toggle('d-none');
+          }
+        });
+      });
+    
+      // Silme modalı için yorum ID'sini ayarla
+      const deleteCommentModal = document.getElementById('deleteCommentModal');
+      deleteCommentModal.addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget;
+        const commentId = button.getAttribute('data-comment-id');
+        const input = document.getElementById('modalCommentInput'); // yeni ID
+        input.value = commentId;
+      });
+      
+      
+    
+      const cancelButtons = document.querySelectorAll('.cancel-edit-btn');
+    
+      cancelButtons.forEach(button => {
+        button.addEventListener('click', function () {
+          const commentId = this.getAttribute('data-comment-id');
+          const form = document.getElementById(`editPostForm-${commentId}`);
+          if (form) {
+            form.classList.add('d-none');
+          }
+        });
+      });
+    });
+      
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+<%- include('partials/footer') %>
